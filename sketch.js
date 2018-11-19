@@ -59,24 +59,24 @@ function draw() {
   }
 }
 
-// function deviceShaken(){
-//   state = 1;
-//   shaken = true;
-// }
+function deviceShaken(){
+  state = 1;
+  shaken = true;
+}
 
-// function deviceTurned(){
-//   if(turnAxis === 'Y'){
-//     rotated = true;
-//   }
-// }
-
-function mousePressed() {
-  if (state == 0) {
-    state = 1;
- } else if(state==1 || state==3){
-    state=2;
+function deviceTurned(){
+  if(turnAxis === 'Y'){
+    rotated = true;
   }
 }
+
+// function mousePressed() {
+//   if (state == 0) {
+//     state = 1;
+//  } else if(state==1 || state==3){
+//     state=2;
+//   }
+// }
 
 function drawStateZero() {
   fill(255);
