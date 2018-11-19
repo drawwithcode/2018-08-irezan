@@ -57,11 +57,21 @@ function draw() {
   } else if (state == 3) {
     drawStateThree();
   }
+
+  if (state != 0){
+    var instruction = 'Ask something \n and shake your phone';
+    textSize(20);
+    text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+  }
 }
 
 function deviceShaken(){
-  state = 1;
-  shaken = true;
+  if(state==1){
+    shaken = true;
+  } else if(state==3){
+    state = 2;
+    shaken = true;
+  }
 }
 
 function deviceTurned(){
@@ -111,13 +121,10 @@ function drawStateOne() {
   x3 = (windowWidth - sqrt(3)*(d/2))/2;
   y3 = (windowHeight + (d / 2))/2;
   triangle(x1, y1, x2, y2, x3, y3);
-
-  var instruction = 'Ask something \n and shake your phone';
-  textSize(20);
-  text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
 }
 
 function drawStateTwo() {
+    triangle(x1, y1, x2, y2, x3, y3);
     myAnswer = answers[Math.floor(Math.random() * 22)];
     state = 3;
 }
