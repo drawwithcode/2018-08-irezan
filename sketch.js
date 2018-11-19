@@ -59,9 +59,12 @@ function draw() {
   }
 
   if (state != 0){
+    pop();
+    fill(255);
     var instruction = 'Ask something \n and shake your phone';
     textSize(20);
     text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+    push();
   }
 }
 
@@ -124,7 +127,10 @@ function drawStateOne() {
 }
 
 function drawStateTwo() {
+    fill(255);
     triangle(x1, y1, x2, y2, x3, y3);
+
+    fill(40);
     myAnswer = answers[Math.floor(Math.random() * 22)];
     state = 3;
 }
