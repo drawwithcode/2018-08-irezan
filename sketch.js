@@ -99,6 +99,8 @@ function deviceTurned() {
 // }
 
 function drawStateZero() {
+  rotated = false;
+  
   fill(255);
   var d = windowWidth / 1.5;
 
