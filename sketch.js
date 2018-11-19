@@ -74,7 +74,7 @@ function draw() {
 function deviceShaken() {
   if (state == 1) {
     shaken = true;
-  } else if (state == 3 && frameCount - refCount > 90) {
+  } else if (state == 3 && frameCount - refCount > 60) {
     state = 2;
     shaken = true;
   }
