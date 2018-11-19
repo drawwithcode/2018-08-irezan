@@ -36,6 +36,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textAlign(CENTER, CENTER);
+  setShakeThreshold(60);
   textFont('Russo One');
 }
 
@@ -58,14 +59,14 @@ function draw() {
     drawStateThree();
   }
 
-  if (state != 0){
-    pop();
-    fill(255);
-    var instruction = 'Ask something \n and shake your phone';
-    textSize(20);
-    text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
-    push();
-  }
+  // if (state != 0){
+  //   pop();
+  //   fill(255);
+  //   var instruction = 'Ask something \n and shake your phone';
+  //   textSize(20);
+  //   text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+  //   push();
+  // }
 }
 
 function deviceShaken(){
@@ -124,6 +125,13 @@ function drawStateOne() {
   x3 = (windowWidth - sqrt(3)*(d/2))/2;
   y3 = (windowHeight + (d / 2))/2;
   triangle(x1, y1, x2, y2, x3, y3);
+
+  pop();
+  fill(255);
+  var instruction = 'Ask something \n and shake your phone';
+  textSize(20);
+  text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+  push();
 }
 
 function drawStateTwo() {
@@ -133,6 +141,13 @@ function drawStateTwo() {
     fill(40);
     myAnswer = answers[Math.floor(Math.random() * 22)];
     state = 3;
+
+    pop();
+    fill(255);
+    var instruction = 'Ask something \n and shake your phone';
+    textSize(20);
+    text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+    push();
 }
 
 function drawStateThree() {
@@ -147,4 +162,11 @@ function drawStateThree() {
   var boxY = windowHeight / 2 - boxHeight/2;
 
   text(myAnswer, boxX, boxY, boxWidth, boxHeight);
+
+  pop();
+  fill(255);
+  var instruction = 'Ask something \n and shake your phone';
+  textSize(20);
+  text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+  push();
 }
