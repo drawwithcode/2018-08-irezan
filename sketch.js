@@ -1,6 +1,7 @@
 var state = 0;
 var rotated = false;
 var shaken = false;
+var shakeSound;
 var myAnswer = '';
 var answers = [ 'As I see it, yes',
                 'It is certain',
@@ -30,7 +31,7 @@ var d, x1, x2, x3, y1, y2, y3;
 
 
 function preload() {
-  // put preload code here
+  shakeSound = loadSound('./assets/shake-sound.wav');
 }
 
 function setup() {
@@ -79,7 +80,11 @@ function deviceShaken(){
 }
 
 function deviceTurned(){
-  if(turnAxis === 'Y'){
+  if(turnAxis === 'Z'){
+    rotated = true;
+  } else if(turnAxis === 'X'){
+    rotated = true;
+  } else if(turnAxis === 'Y'){
     rotated = true;
   }
 }
@@ -148,6 +153,8 @@ function drawStateTwo() {
     textSize(20);
     text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
     push();
+
+    shakeSound.play();
 }
 
 function drawStateThree() {
