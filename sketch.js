@@ -2,6 +2,7 @@ var state = 0;
 var rotated = false;
 var shaken = false;
 var shakeSound;
+var refCount;
 var myAnswer = '';
 var answers = [ 'As I see it, yes',
                 'It is certain',
@@ -70,21 +71,21 @@ function draw() {
   // }
 }
 
-function deviceShaken(){
-  if(state==1){
+function deviceShaken() {
+  if (state == 1) {
     shaken = true;
-  } else if(state==3){
+  } else if (state == 3 && frameCount - refCount > 90) {
     state = 2;
     shaken = true;
   }
 }
 
-function deviceTurned(){
-  if(turnAxis === 'Z'){
+function deviceTurned() {
+  if (turnAxis === 'Z') {
     rotated = true;
-  } else if(turnAxis === 'X'){
+  } else if (turnAxis === 'X') {
     rotated = true;
-  } else if(turnAxis === 'Y'){
+  } else if (turnAxis === 'Y') {
     rotated = true;
   }
 }
@@ -125,10 +126,10 @@ function drawStateOne() {
   d = windowWidth / 1.5;
   x1 = windowWidth / 2;
   y1 = windowHeight / 2 - d / 2;
-  x2 = (windowWidth + sqrt(3)*(d/2))/2;
-  y2 = (windowHeight + (d / 2))/2;
-  x3 = (windowWidth - sqrt(3)*(d/2))/2;
-  y3 = (windowHeight + (d / 2))/2;
+  x2 = (windowWidth + sqrt(3) * (d / 2)) / 2;
+  y2 = (windowHeight + (d / 2)) / 2;
+  x3 = (windowWidth - sqrt(3) * (d / 2)) / 2;
+  y3 = (windowHeight + (d / 2)) / 2;
   triangle(x1, y1, x2, y2, x3, y3);
 
   pop();
@@ -140,24 +141,28 @@ function drawStateOne() {
 }
 
 function drawStateTwo() {
-    fill(255);
-    triangle(x1, y1, x2, y2, x3, y3);
+  fill(255);
+  triangle(x1, y1, x2, y2, x3, y3);
 
-    fill(40);
-    myAnswer = answers[Math.floor(Math.random() * 22)];
-    state = 3;
+  fill(40);
+  myAnswer = answers[Math.floor(Math.random() * 22)];
 
-    pop();
-    fill(255);
-    var instruction = 'Ask something \n and shake your phone';
-    textSize(20);
-    text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
-    push();
+  refCount = frameCount;
 
-    shakeSound.play();
+  pop();
+  fill(255);
+  var instruction = 'Ask something \n and shake your phone';
+  textSize(20);
+  text(instruction, windowWidth / 2, 4.3 * windowHeight / 5);
+  push();
+
+  shakeSound.play();
+
+  state = 3;
 }
 
 function drawStateThree() {
+
   fill(255);
   triangle(x1, y1, x2, y2, x3, y3);
 
@@ -165,8 +170,8 @@ function drawStateThree() {
   textFont('Montserrat');
   var boxWidth = windowWidth / 3.5;
   var boxHeight = windowWidth / 3.5;
-  var boxX = windowWidth / 2 - boxWidth/2;
-  var boxY = windowHeight / 2 - boxHeight/2;
+  var boxX = windowWidth / 2 - boxWidth / 2;
+  var boxY = windowHeight / 2 - boxHeight / 2;
 
   text(myAnswer, boxX, boxY, boxWidth, boxHeight);
 
