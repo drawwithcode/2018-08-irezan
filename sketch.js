@@ -32,7 +32,7 @@ var d, x1, x2, x3, y1, y2, y3;
 
 
 function preload() {
-  shakeSound = loadSound('./assets/shake-sound.wav');
+  shakeSound = loadSound('./assets/shake-sound.mp3');
 }
 
 function setup() {
@@ -100,7 +100,7 @@ function deviceTurned() {
 
 function drawStateZero() {
   rotated = false;
-  
+
   fill(255);
   var d = windowWidth / 1.5;
 
